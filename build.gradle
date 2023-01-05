@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+checkstyle {
+    toolVersion = "8.28"
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+dependencies {
+    checkstyle "com.puppycrawl.tools:checkstyle:8.28"
+}
+
+group 'org.tasks'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    checkstyle "com.puppycrawl.tools:checkstyle:8.28"
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
+}
+checkstyle {
+    checkstyleMain.source = "src/main/"
+    checkstyleMain.excludes = ["**/src/test/**"]
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+test.finalizedBy("checkstyleMain")
+test {
+    useJUnitPlatform()
+}
