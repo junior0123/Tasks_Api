@@ -63,11 +63,10 @@ public class LoginTest {
         String nameValue = responseData.get("first_name");
         String lastNameValue = responseData.get("last_name");
         String emailValue = responseData.get("email");
+        assertEquals(expectedUserID,idValue);
         assertEquals(expectedFirstName,nameValue);
         assertEquals(expectedLastName,lastNameValue);
         assertEquals(expectedEmail,emailValue);
-
-
     }
 
 }
