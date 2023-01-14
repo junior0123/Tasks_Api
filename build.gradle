@@ -24,12 +24,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     checkstyle "com.puppycrawl.tools:checkstyle:8.28"
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
-    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
     testImplementation 'io.cucumber:cucumber-java:7.10.1'
     testImplementation 'io.cucumber:cucumber-junit:7.10.1'
     implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
     implementation group: 'tech.grasshopper', name: 'extentreports-cucumber7-adapter', version: '1.9.2'
-
+    implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.14.1'
 
 
 }
@@ -46,4 +48,5 @@ test.finalizedBy("checkstyleMain")
 test {
     useJUnitPlatform()
 }
+
 

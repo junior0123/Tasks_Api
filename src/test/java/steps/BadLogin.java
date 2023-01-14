@@ -1,6 +1,8 @@
 package steps;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
+import org.tasks.User;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,19 +11,18 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.tasks.User;
 
-public class SimpleLoginTest {
+public class BadLogin {
     String BASE_URI = "https://test-api.k6.io";
     String endPoint;
     String requestBody;
     Response response;
     User user;
-    @Given("a user with valid credentials")
+    @Given("a user with invalid credentials")
     public void obtainAddressOfEndPoint() {
         endPoint = "/auth/basic/login/";
     }
-    @When("the user enters his name {string} and password {string}")
+    @When("the user enters his invalid username {string} and password {string}")
     public void enterCredentials(String username, String password) {
         System.out.println(password + username);
             user = User.builder()
@@ -29,7 +30,7 @@ public class SimpleLoginTest {
                 .password(password).build();
     }
                 
-    @When("send the information to the website")
+    @When("send the invalid information to the website")
     public void submitLogin() {
         System.out.println(BASE_URI + endPoint);
         response = RestAssured
@@ -38,22 +39,9 @@ public class SimpleLoginTest {
                 .body(user)
                 .post(BASE_URI + endPoint);
     }
-    @Then("the user see a status code is ok")
+    @Then("the user see a bad request")
     public void seeTheStatusCodeOK() {
-        assertEquals(200,response.getStatusCode());
-    }
-
-    @Then("and see correct login information")
-    public void and_see_login_information() {
-        JsonPath responseData = response.jsonPath();
-        int idValue = responseData.get("id");
-        String nameValue = responseData.get("first_name");
-        String lastNameValue = responseData.get("last_name");
-        String emailValue = responseData.get("email");
-        assertEquals(664436,idValue);
-        assertEquals("Alvaro", nameValue);
-        assertEquals("Sivila", lastNameValue);
-        assertEquals("alvaro.sivila@jala.university",emailValue);
-        
+        assertEquals(400,response.getStatusCode());
     }
 }
+    
