@@ -5,7 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import org.apache.http.HttpStatus;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,6 +23,8 @@ public class LoginTest {
                 .post(BASE_URL)
                 .then()
                 .assertThat().statusCode(200).extract().response();
+        String responseBody = response.getBody().asString();
+        System.out.println(responseBody);
 
     }
     @Test

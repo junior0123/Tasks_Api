@@ -22,7 +22,14 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     checkstyle "com.puppycrawl.tools:checkstyle:8.28"
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+    testImplementation 'io.cucumber:cucumber-java:7.10.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.10.1'
+    implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
+
+
+
 }
 checkstyle {
     checkstyleMain.source = "src/main/"
@@ -37,3 +44,4 @@ test.finalizedBy("checkstyleMain")
 test {
     useJUnitPlatform()
 }
+
