@@ -5,7 +5,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty:target/cucumber-html-report.html", "json:target/cucmber-report.json"},
+@CucumberOptions(plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 features="src/test/resources", glue = {"steps", "hooks"})
 public class Runner {
 }
